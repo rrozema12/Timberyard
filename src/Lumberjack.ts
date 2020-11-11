@@ -1,15 +1,15 @@
 import { colors } from './utils/colors';
 import { IBody } from './types/body';
 
-function dateFormat() {
+export function dateFormat() {
   return new Date(Date.now()).toUTCString();
 }
 
-function generateMessage(body: IBody) {
+export function generateMessage(body: IBody) {
   return `${body.backgroundColor}${body.color} ${body.type} ${colors.Reset}`;
 }
 
-function formatContent(content: any) {
+export function formatContent(content: any) {
   if (content === undefined) return '';
 
   if (content instanceof Array) {
@@ -88,6 +88,7 @@ class Lumberjack {
     console.log(
       `🪓 ${dateFormat()} ${generateMessage(this.body)}   |  ${this.body.message}${`${formatContent(content)}`}`,
     );
+    return this.body;
   }
 
   info(message = '', content?: any) {
@@ -97,6 +98,7 @@ class Lumberjack {
         content,
       )}`}`,
     );
+    return this.body;
   }
 
   warn(message = '', content?: any) {
@@ -106,6 +108,7 @@ class Lumberjack {
         content,
       )}`}`,
     );
+    return this.body;
   }
 
   error(message = '', content?: any) {
@@ -115,6 +118,7 @@ class Lumberjack {
         content,
       )}`}`,
     );
+    return this.body;
   }
 }
 
