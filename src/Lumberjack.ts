@@ -85,7 +85,7 @@ class Lumberjack {
 
   log(message = '', content?: any) {
     this.setBody('log', message, content);
-    console.log(
+    process.stdout.write(
       `🪓 ${dateFormat()} ${generateMessage(this.body)}   |  ${this.body.message}${`${formatContent(content)}`}`,
     );
     return this.body;
@@ -93,7 +93,7 @@ class Lumberjack {
 
   info(message = '', content?: any) {
     this.setBody('info', message, content);
-    console.info(
+    process.stdout.write(
       `🪓 ${dateFormat()} ${generateMessage(this.body)}  | ${colors.Reset} ${this.body.message}${`${formatContent(
         content,
       )}`}`,
@@ -103,7 +103,7 @@ class Lumberjack {
 
   warn(message = '', content?: any) {
     this.setBody('warn', message, content);
-    console.warn(
+    process.stdout.write(
       `🪓 ${dateFormat()} ${generateMessage(this.body)}  | ${colors.Reset} ${this.body.message}${`${formatContent(
         content,
       )}`}`,
@@ -113,7 +113,7 @@ class Lumberjack {
 
   error(message = '', content?: any) {
     this.setBody('error', message, content);
-    console.error(
+    process.stdout.write(
       `🪓 ${dateFormat()} ${generateMessage(this.body)} | ${colors.Reset} ${this.body.message}${`${formatContent(
         content,
       )}`}`,
