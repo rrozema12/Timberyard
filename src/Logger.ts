@@ -1,25 +1,83 @@
 import { colors } from './utils/colors';
 
-const dateFormat = () => {
+function dateFormat() {
   return new Date(Date.now()).toUTCString();
-};
+}
 
-class Logger {
-  body: { color: string };
+function generateMessage(body: any) {
+  return `${body.backgroundColor}${body.color} ${body.type} ${colors.Reset}`;
+}
+
+class Log {
+  body: { color: string; backgroundColor: string; type: string; message: string; error?: object };
 
   constructor() {
     this.body = {
-      color: colors.fg.Green,
+      color: colors.Reset,
+      backgroundColor: colors.reset,
+      type: 'log',
+      message: '',
+      error: {},
     };
   }
 
-  setBodyColor(color: string) {
-    if (color !== undefined) this.body.color = colors.fg[color];
+  setBody(type: string, message: string, error?: object) {
+    switch (type) {
+      case 'log':
+        this.body = {
+          color: colors.fg.White,
+          backgroundColor: colors.bg.Green,
+          type: 'LOG',
+          message,
+        };
+        break;
+      case 'info':
+        this.body = {
+          color: colors.fg.White,
+          backgroundColor: colors.bg.Blue,
+          type: 'INFO',
+          message,
+        };
+        break;
+      case 'warn':
+        this.body = {
+          color: colors.fg.White,
+          backgroundColor: colors.bg.Yellow,
+          type: 'WARN',
+          message,
+        };
+        break;
+      case 'error':
+        this.body = {
+          color: colors.fg.White,
+          backgroundColor: colors.bg.Red,
+          type: 'ERROR',
+          message,
+          error,
+        };
+        break;
+    }
   }
 
-  log(body = '') {
-    console.log(`${dateFormat()} |${this.body.color} LOG ${colors.Reset}| ${body}`);
+  log(message = '') {
+    this.setBody('log', message);
+    console.log(`${dateFormat()} 💬 ${generateMessage(this.body)} ${this.body.message}`);
+  }
+
+  info(message = '') {
+    this.setBody('info', message);
+    console.log(`${dateFormat()} ℹ️ ${generateMessage(this.body)} ${colors.Reset} ${this.body.message}`);
+  }
+
+  warn(message = '') {
+    this.setBody('warn', message);
+    console.log(`${dateFormat()} ⚠️ ${generateMessage(this.body)} ${colors.Reset} ${this.body.message}`);
+  }
+
+  error(message = '', error = {}) {
+    this.setBody('error', message, error);
+    console.log(`${dateFormat()} 🚫 ${generateMessage(this.body)} ${colors.Reset} ${this.body.message}`);
   }
 }
 
-export default Logger;
+export default Log;
