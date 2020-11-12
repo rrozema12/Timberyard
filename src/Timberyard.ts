@@ -23,7 +23,7 @@ export function formatContent(content: any) {
   return `, ${content}`;
 }
 
-class Lumberjack {
+class Timberyard {
   body: {
     color: string;
     backgroundColor: string;
@@ -42,7 +42,7 @@ class Lumberjack {
     };
   }
 
-  setBody(type: string, message: string, content?: object) {
+  private setBody(type: string, message: string, content?: object) {
     switch (type) {
       case 'log':
         this.body = {
@@ -83,7 +83,7 @@ class Lumberjack {
     }
   }
 
-  log(message = '', content?: any) {
+  public log(message = '', content?: any) {
     this.setBody('log', message, content);
     process.stdout.write(
       `🪓 ${dateFormat()} ${generateMessage(this.body)}   |  ${this.body.message}${`${formatContent(content)}`}`,
@@ -91,7 +91,7 @@ class Lumberjack {
     return this.body;
   }
 
-  info(message = '', content?: any) {
+  public info(message = '', content?: any) {
     this.setBody('info', message, content);
     process.stdout.write(
       `🪓 ${dateFormat()} ${generateMessage(this.body)}  | ${colors.Reset} ${this.body.message}${`${formatContent(
@@ -101,7 +101,7 @@ class Lumberjack {
     return this.body;
   }
 
-  warn(message = '', content?: any) {
+  public warn(message = '', content?: any) {
     this.setBody('warn', message, content);
     process.stdout.write(
       `🪓 ${dateFormat()} ${generateMessage(this.body)}  | ${colors.Reset} ${this.body.message}${`${formatContent(
@@ -111,7 +111,7 @@ class Lumberjack {
     return this.body;
   }
 
-  error(message = '', content?: any) {
+  public error(message = '', content?: any) {
     this.setBody('error', message, content);
     process.stdout.write(
       `🪓 ${dateFormat()} ${generateMessage(this.body)} | ${colors.Reset} ${this.body.message}${`${formatContent(
@@ -122,4 +122,4 @@ class Lumberjack {
   }
 }
 
-export default Lumberjack;
+export default Timberyard;

@@ -1,7 +1,7 @@
-import Lumberjack from '../Lumberjack';
+import Timberyard from '../Timberyard';
 
-test('Lumberjack LOG tests', () => {
-  const logger = new Lumberjack();
+test('Timberyard LOG tests', () => {
+  const logger = new Timberyard();
 
   const content1 = { test: { test: 'test' } };
   const content2 = ['test', 'wow'];
@@ -44,8 +44,8 @@ test('Lumberjack LOG tests', () => {
   });
 });
 
-test('Lumberjack INFO tests', () => {
-  const logger = new Lumberjack();
+test('Timberyard INFO tests', () => {
+  const logger = new Timberyard();
 
   const content1 = { test: { test: 'test' } };
   const content2 = ['test', 'wow'];
@@ -88,15 +88,15 @@ test('Lumberjack INFO tests', () => {
   });
 });
 
-test('Lumberjack WARN tests', () => {
-  const logger = new Lumberjack();
+test('Timberyard WARN tests', () => {
+  const logger = new Timberyard();
 
   const content1 = { test: { test: 'test' } };
   const content2 = ['test', 'wow'];
   const content3 = false;
 
-  logger.warn('This is an object', content1);
-  expect(logger.body).toStrictEqual({
+  const loggerBody1 = logger.warn('This is an object', content1);
+  expect(loggerBody1).toStrictEqual({
     color: '\u001b[37m',
     backgroundColor: '\x1b[43m',
     type: 'WARN',
@@ -104,8 +104,8 @@ test('Lumberjack WARN tests', () => {
     content: { test: { test: 'test' } },
   });
 
-  logger.warn('This is an array', content2);
-  expect(logger.body).toStrictEqual({
+  const loggerBody2 = logger.warn('This is an array', content2);
+  expect(loggerBody2).toStrictEqual({
     color: '\u001b[37m',
     backgroundColor: '\x1b[43m',
     type: 'WARN',
@@ -113,8 +113,8 @@ test('Lumberjack WARN tests', () => {
     content: ['test', 'wow'],
   });
 
-  logger.warn('This is a boolean', content3);
-  expect(logger.body).toStrictEqual({
+  const loggerBody3 = logger.warn('This is a boolean', content3);
+  expect(loggerBody3).toStrictEqual({
     color: '\u001b[37m',
     backgroundColor: '\x1b[43m',
     type: 'WARN',
@@ -122,8 +122,8 @@ test('Lumberjack WARN tests', () => {
     content: false,
   });
 
-  logger.warn('This is has no content');
-  expect(logger.body).toStrictEqual({
+  const loggerBody4 = logger.warn('This is has no content');
+  expect(loggerBody4).toStrictEqual({
     color: '\u001b[37m',
     backgroundColor: '\x1b[43m',
     type: 'WARN',
@@ -132,15 +132,15 @@ test('Lumberjack WARN tests', () => {
   });
 });
 
-test('Lumberjack ERROR tests', () => {
-  const logger = new Lumberjack();
+test('Timberyard ERROR tests', () => {
+  const logger = new Timberyard();
 
   const content1 = { test: { test: 'test' } };
   const content2 = ['test', 'wow'];
   const content3 = false;
 
-  logger.error('This is an object', content1);
-  expect(logger.body).toStrictEqual({
+  const loggerBody1 = logger.error('This is an object', content1);
+  expect(loggerBody1).toStrictEqual({
     color: '\u001b[37m',
     backgroundColor: '\x1b[41m',
     type: 'ERROR',
@@ -148,8 +148,8 @@ test('Lumberjack ERROR tests', () => {
     content: { test: { test: 'test' } },
   });
 
-  logger.error('This is an array', content2);
-  expect(logger.body).toStrictEqual({
+  const loggerBody2 = logger.error('This is an array', content2);
+  expect(loggerBody2).toStrictEqual({
     color: '\u001b[37m',
     backgroundColor: '\x1b[41m',
     type: 'ERROR',
@@ -157,8 +157,8 @@ test('Lumberjack ERROR tests', () => {
     content: ['test', 'wow'],
   });
 
-  logger.error('This is a boolean', content3);
-  expect(logger.body).toStrictEqual({
+  const loggerBody3 = logger.error('This is a boolean', content3);
+  expect(loggerBody3).toStrictEqual({
     color: '\u001b[37m',
     backgroundColor: '\x1b[41m',
     type: 'ERROR',
@@ -166,8 +166,8 @@ test('Lumberjack ERROR tests', () => {
     content: false,
   });
 
-  logger.error('This is has no content');
-  expect(logger.body).toStrictEqual({
+  const loggerBody4 = logger.error('This is has no content');
+  expect(loggerBody4).toStrictEqual({
     color: '\u001b[37m',
     backgroundColor: '\x1b[41m',
     type: 'ERROR',

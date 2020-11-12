@@ -1,4 +1,4 @@
-import { dateFormat, generateMessage, formatContent } from '../Lumberjack';
+import { dateFormat, generateMessage, formatContent } from '../Timberyard';
 import { colors } from '../utils/colors';
 test('date formatter', () => {
   expect(dateFormat()).toBe(new Date(Date.now()).toUTCString());
