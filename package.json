@@ -1,6 +1,6 @@
 {
   "name": "timberyard",
-  "version": "1.0.0",
+  "version": "1.2.2",
   "description": "A logger for Node.js applications",
   "main": "index.js",
   "files": [
